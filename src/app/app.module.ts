@@ -8,6 +8,7 @@ import { LoginComponent } from './pagina/login/login.component';
 import { RegistroComponent } from './pagina/registro/registro.component';
 import { CrearProductoComponent } from './pagina/crear-producto/crear-producto.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

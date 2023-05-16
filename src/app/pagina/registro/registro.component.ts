@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
-
+import { ProductoDTO } from 'src/app/modelo/producto-dto';
 
 
 @Component({

@@ -5,6 +5,5 @@ export class ProductoDTO {
     unidades:number=0;
     imagenes:string[]=[];
     categoria:string="";
-
     
 }
