@@ -6,39 +6,44 @@ import { ProductoDTO } from 'src/app/modelo/producto-dto';
   templateUrl: './crear-producto.component.html',
   styleUrls: ['./crear-producto.component.css']
 })
-
 export class CrearProductoComponent {
-  categorias:string[];
   producto: ProductoDTO;
-  archivos!:FileList;
-  
+  categoriasSeleccionadas: string[] = [];
+  categorias: any[] = [
+    { nombre: 'Tecnología', checked: false },
+    { nombre: 'Hogar', checked: false },
+    { nombre: 'Deportes', checked: false },
+    { nombre: 'Calzado', checked: false }
+  ];
+  archivos!: FileList;
 
-  constructor(){
-    this.categorias=[];
-    this.cargarCategorias();
+  constructor() {
     this.producto = new ProductoDTO();
   }
 
-  private cargarCategorias(){
-    this.categorias.push('TECNOLOGIA');
-    this.categorias.push('DEPORTE');
-    this.categorias.push('VEHICULO');
-    this.categorias.push('ZAPATOS');
-  }
-  onFileChange(event:any){
-    if(event.target.files.length>0){
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
       const files = event.target.files;
       console.log(files);
     }
   }
 
-    public crearProducto(){
-      if(this.archivos != null && this.archivos.length>0){
-        console.log(this.producto);
-      }else{
-        console.log('Debe seleccionar al menos una imagen')
-      }
+  public crearProducto() {
+    if (this.archivos != null && this.archivos.length > 0) {
+      this.producto.categorias = this.categoriasSeleccionadas;
+      console.log(this.producto);
+    } else {
+      console.log('Debe seleccionar al menos una imagen');
     }
+  }
 
-  
+  onCategoriaChange(categoria: any) {
+    if (categoria.checked) {
+      this.categoriasSeleccionadas = [categoria.nombre];
+    } else {
+      this.categoriasSeleccionadas = this.categoriasSeleccionadas.filter(
+        (cat) => cat !== categoria.nombre
+      );
+    }
+  }
 }

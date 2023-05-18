@@ -2,11 +2,11 @@
 <form #f="ngForm" (ngSubmit)="ingresar()">
     <div>
         <label>Email: </label>
-        <input type="text" name = "email" [(ngModel)]="usuario.email"/>
+        <input type="text" name = "email" [(ngModel)]="usuario.email" required/>
     </div>
     <div>
         <label>Contraseña: </label>
-        <input type="password" name="password" [(ngModel)]="usuario.password"/>
+        <input type="password" name="password" [(ngModel)]="usuario.password" required/>
     </div>
     <button type="submit" [disabled]="f.invalid" >Ingresar</button>
 </form>
