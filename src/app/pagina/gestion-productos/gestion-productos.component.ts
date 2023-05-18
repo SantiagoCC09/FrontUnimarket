@@ -39,5 +39,13 @@ export class GestionProductosComponent implements OnInit {
       this.textoBtnEliminar = "";
     }
   }
+  public borrarProductos() {
+    this.seleccionados.forEach(e => {
+      this.productos = this.productos.filter(i => i != e);
+    });
+    this.seleccionados = [];
+    this.actualizarMensaje();
+  }
+
 
 }
