@@ -30,6 +30,10 @@ export class ProductoService {
     return this.http.get<MensajeDTO>(`${this.productoURL}/listar`);
   }
 
+  public listarQuemados(){
+    return this.productos;
+  }
+
   public obtener(codigo: number): Observable<ProductoGetDTO> {
     return this.http.get<ProductoGetDTO>(`${this.productoURL}/obtener/${codigo}`);
   }

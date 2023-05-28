@@ -19,14 +19,18 @@ export class GestionProductosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.productos = this.productoServicio.listarQuemados();
     this.productoServicio.listar().subscribe(
       data => {
         this.productos = data.respuesta;
+        console.log("Cargados correctamente");
       },
       error => {
         console.log(error.error);
+        console.log("Error, estan quemados");
       }
     );
+    
   }
 
   public seleccionar(producto: ProductoGetDTO, estado: boolean) {
