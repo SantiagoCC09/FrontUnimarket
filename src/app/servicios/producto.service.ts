@@ -9,7 +9,7 @@ import { ProductoGetDTO } from '../modelo/producto-get-dto';
   providedIn: 'root'
 })
 export class ProductoService {
-  private productoURL = "http://localhost:8080/api/productos";
+  private productoURL = "http://localhost:8081/api/productos";
   productos: ProductoGetDTO[];
   productoSeleccionado: ProductoGetDTO;
 

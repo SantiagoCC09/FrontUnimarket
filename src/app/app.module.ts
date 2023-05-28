@@ -37,7 +37,7 @@ import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-pr
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }
