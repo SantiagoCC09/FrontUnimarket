@@ -1,0 +1,26 @@
+.crear-producto-container{
+    width: 100%;
+    height: 100%;
+}
+.crear-producto-container label{
+    padding: 1%;
+}
+
+.crear-producto-container input{
+    padding: 0%;
+    border-radius: 9px;
+    border-color: azure;
+}
+
+.crear-producto-container button{
+    padding: 0.5%;
+    border-radius: 9px;
+}
+
+.crear-producto-container textarea{
+    padding: 0.5%;
+    border-radius: 9px;
+}
+.descripcion{
+    display:flex;
+}

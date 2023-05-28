@@ -8,12 +8,19 @@ import { ProductoService } from 'src/app/servicios/producto.service';
   styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent {
-  productos: ProductoGetDTO[];
+  productos: ProductoGetDTO[]=[];
   filtro: ProductoGetDTO[];
   textoBusqueda: string;
   constructor(private route: ActivatedRoute, private productoServicio: ProductoService) {
     this.textoBusqueda = "";
-    this.productos = this.productoServicio.listar();
+    this.productoServicio.listar().subscribe(
+      data => {
+        this.productos = data.respuesta;
+      },
+      error => {
+        console.log(error.error);
+      }
+    );
     this.filtro = [];
     this.route.params.subscribe(params => {
       this.textoBusqueda = params["texto"];

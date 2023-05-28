@@ -1,11 +1,11 @@
 export class ProductoGetDTO {
-    codigo: number;
-    nombre: string;
-    descripcion: string;
-    precio: number;
-    unidades: number;
-    imagenes: string[];
-    categorias: string[];
+    codigo: number=0;
+    nombre: string="";
+    descripcion: string="";
+    precio: number=0;
+    unidades: number=0;
+    imagenes: string[]=[];
+    categorias: string[]=[];
   
     constructor(
       codigo: number,

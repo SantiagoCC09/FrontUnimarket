@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { DetalleCompraDTO } from 'src/app/modelo/detalle-compra-dto';
+import { CarritoService } from 'src/app/servicios/carrito.service';
+import { ProductoService } from 'src/app/servicios/producto.service';
+import { ProductoGetDTO } from 'src/app/modelo/producto-get-dto';
 
 @Component({
   selector: 'app-carrito',
@@ -6,5 +10,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent {
-
+  productos: DetalleCompraDTO[];
+  valorTotal: number;
+  constructor(private carritoService: CarritoService, private productoService: ProductoService) {
+    this.productos = [];
+    this.valorTotal = 0;
+    const listaCodigos = this.carritoService.listar();
+    if (listaCodigos.length > 0) {
+      for (let cod of listaCodigos) {
+        this.productoService.obtener(cod).subscribe(
+          data => {
+            const producto: ProductoGetDTO = data;
+            if (producto != null) {
+              this.productos.push(new DetalleCompraDTO(producto, 1));
+              this.valorTotal += producto.precio;
+            }
+          },
+          error => {
+            console.log(error.error);
+          }
+        );
+      }
+    }
+  }
 }

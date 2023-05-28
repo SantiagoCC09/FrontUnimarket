@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UsuarioDTO } from 'src/app/modelo/usuario-dto';
-import { ProductoDTO } from 'src/app/modelo/producto-dto';
-
+import { AuthService } from 'src/app/servicios/auth.service';
+import { Alerta } from 'src/app/modelo/alerta';
 
 @Component({
   selector: 'app-registro',
@@ -10,15 +10,38 @@ import { ProductoDTO } from 'src/app/modelo/producto-dto';
 })
 export class RegistroComponent {
   usuario: UsuarioDTO;
+  registrado: boolean;
+  alerta!: Alerta;
 
-  constructor(){
-    this.usuario=new UsuarioDTO();
+  constructor(private authService: AuthService) {
+    this.usuario = new UsuarioDTO();
+    this.registrado = false;
   }
 
-  public registrar(){
-    console.log(this.usuario);
+  public registrar() {
+    const objeto = this;
+    this.authService.registrar(this.usuario).subscribe({
+      next: data => {
+        objeto.alerta = new Alerta(data.respuesta, "success");
+      },
+      error: error => {
+        objeto.alerta = new Alerta(error.error.respuesta, "danger");
+      }
+    });
   }
-  public sonIguales():boolean{
-    return this.usuario.password == this.usuario.confirmarPassword;
+
+
+
+  private guardarUsuario(usuario: UsuarioDTO) {
+    // Aquí debes implementar la lógica para guardar el usuario en el almacenamiento o base de datos
+    // Puedes usar servicios, APIs o cualquier otra forma de persistencia de datos
+    // Por ejemplo, puedes utilizar Firebase, MongoDB u otras opciones
+
+    // Ejemplo de guardado en el almacenamiento local (localStorage)
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+  }
+
+  public sonIguales(): boolean {
+    return this.usuario.password === this.usuario.confirmarPassword;
   }
 }

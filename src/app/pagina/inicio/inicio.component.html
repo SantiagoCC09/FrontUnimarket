@@ -1,1 +1,23 @@
-<p>inicio works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">Bienvenido a nuestro Unimarket</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card-deck">
+          <div class="card" *ngFor="let producto of productos">
+            <img [src]="producto.imagenes[0]" class="card-img-top" alt="Imagen del producto">
+            <div class="card-body">
+              <h5 class="card-title">{{ producto.nombre }}</h5>
+              <p class="card-text">{{ producto.descripcion }}</p>
+              <p class="card-text">Precio: {{ producto.precio }}</p>
+              <button class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
