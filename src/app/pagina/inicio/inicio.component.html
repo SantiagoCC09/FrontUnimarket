@@ -6,7 +6,7 @@
   </div>
   <div class="all-products">
     <div class="row1">
-      <div class="col-12">
+      <div class="row12">
         <div class="form-group">
           <label>Categorías:</label>
           <div *ngFor="let categoria of categorias">
@@ -19,26 +19,29 @@
       </div>
     </div>
     <div class="row2">
-      <div class="col-12">
-        <div class="card-deck">
-          <div class="card" *ngFor="let producto of productos">
-            <img [src]="producto.imagenes[0]" class="card-img-top" alt="Imagen del producto">
-            <div class="card-body">
-              <div class="margen">
-                <h5 class="card-title">{{ producto.nombre }}</h5>
-                <p class="card-text">{{ producto.descripcion }}</p>
-                <p class="card-text">Precio: {{ producto.precio }}</p>
-                <p class="card-text">
-                  Categorías:
-                  {{ producto.categorias }}
-                </p>
-              </div>
 
-              <button class="btn btn-primary" (click)="agregarAlCarrito(producto)">
+      <div class="card-deck">
+        <div class="card" *ngFor="let producto of productos">
+          <img [src]="producto.imagenes[0]" class="card-img-top" alt="Imagen del producto">
+          <div class="margen">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <p class="card-text">{{ producto.descripcion }}</p>
+            <p class="card-text">Precio: {{ producto.precio }}</p>
+            <p class="card-text">
+              Categorías:
+              {{ producto.categorias }}
+            </p>
+            <div class="botones-producto">
+              <button class="carrito" (click)="agregarAlCarrito(producto)">
                 Agregar al carrito
               </button>
+              <button class="favoritos" (click)="agregarAlCarrito(producto)">
+                Favoritos
+              </button>
+
             </div>
           </div>
+
         </div>
       </div>
     </div>

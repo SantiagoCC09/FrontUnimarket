@@ -13,6 +13,8 @@ import { RolesGuard } from './guards/roles.service';
 import { RolesService } from './guards/roles.service';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-productos.component';
+import { FavoritoService } from './servicios/favorito.service';
+import { FavoritoComponent } from './pagina/favorito/favorito.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,7 @@ const routes: Routes = [
   { path: "carrito", component: CarritoComponent },
   { path: "gestion", component: GestionProductosComponent },
   { path: "perfil", component: PerfilComponent },
+  {path: "favorito", component: FavoritoComponent},
   { path: "editar-producto/:codigo", component: CrearProductoComponent },
 
   {

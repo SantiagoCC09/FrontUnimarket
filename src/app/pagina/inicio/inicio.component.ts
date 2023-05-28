@@ -10,6 +10,7 @@ import { CategoriaService } from 'src/app/servicios/categoria.service';
 })
 export class InicioComponent implements OnInit {
   productos: ProductoGetDTO[];
+  
   categorias: any[] = [
     { nombre: 'Tecnología', checked: false },
     { nombre: 'Hogar', checked: false },
@@ -17,6 +18,8 @@ export class InicioComponent implements OnInit {
     { nombre: 'Ropa', checked: false },
     { nombre: 'Calzado', checked: false },
   ];
+  
+ //categorias=[];
 
   constructor(private productoServicio: ProductoService, private categoriaServicio:CategoriaService) {
     this.productos = [];
