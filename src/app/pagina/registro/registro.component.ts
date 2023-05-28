@@ -33,7 +33,7 @@ export class RegistroComponent {
       }
     });
     console.log(this.usuario.nombre);
-    console.log(this.usuario.contrasenia);
+    console.log(this.usuario.password);
     
   }
 
@@ -49,6 +49,6 @@ export class RegistroComponent {
   }
 
   public sonIguales(): boolean {
-    return this.usuario.contrasenia === this.usuario.confirmarPassword;
+    return this.usuario.password === this.usuario.confirmarPassword;
   }
 }
