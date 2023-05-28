@@ -18,7 +18,6 @@ import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-pr
 const routes: Routes = [
   { path: "", component: InicioComponent },
   { path: "login", component: LoginComponent },
-
   { path: "registro", component: RegistroComponent },
   { path: "crear-producto", component: CrearProductoComponent },
   { path: "busqueda/:texto", component: BusquedaComponent },
@@ -26,24 +25,25 @@ const routes: Routes = [
   { path: "gestion", component: GestionProductosComponent },
   { path: "perfil", component: PerfilComponent },
   { path: "editar-producto/:codigo", component: CrearProductoComponent },
-  { path: "**", pathMatch: "full", redirectTo: "" },
-  {
-    path: "crear-producto", component: CrearProductoComponent, canActivate: [RolesGuard], data: {
-      expectedRole: ["CLIENTE"]
-    }
-  },
-  {
-    path: "editar-producto/:codigo", component: CrearProductoComponent, canActivate:
-      [RolesGuard], data: { expectedRole: ["CLIENTE"] }
-  },
-  {
-    path: "gestionar-productos", component: GestionProductosComponent, canActivate:
-      [RolesGuard], data: { expectedRole: ["CLIENTE"] }
-  },
-  { path: "revisar-productos", component: RevisarProductosComponent, canActivate: [RolesGuard],
-data: { expectedRole: ["MODERADOR"] } },
-  { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
-  { path: "registro", component: RegistroComponent, canActivate: [LoginGuard] }
+  
+  //{
+    //path: "crear-producto", component: CrearProductoComponent, canActivate: [RolesGuard], data: {
+      //expectedRole: ["CLIENTE"]
+    //}
+  //},
+  //{
+   // path: "editar-producto/:codigo", component: CrearProductoComponent, canActivate:
+    //  [RolesGuard], data: { expectedRole: ["CLIENTE"] }
+  //},
+  //{
+   // path: "gestionar-productos", component: GestionProductosComponent, canActivate:
+      //[RolesGuard], data: { expectedRole: ["CLIENTE"] }
+  //},
+  //{ path: "revisar-productos", component: RevisarProductosComponent, canActivate: [RolesGuard],
+//data: { expectedRole: ["MODERADOR"] } },
+ // { path: "login", component: LoginComponent, canActivate: [LoginGuard] },
+  //{ path: "registro", component: RegistroComponent, canActivate: [LoginGuard] },
+  { path: "**", pathMatch: "full", redirectTo: "" }
 
 ];
 

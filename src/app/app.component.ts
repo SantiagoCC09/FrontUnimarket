@@ -13,7 +13,10 @@ export class AppComponent implements OnInit {
   title = 'Unimarket';
   isLogged = false;
   email: string = "";
-  constructor(private tokenService: TokenService, private router: Router, private authService: AuthService, private sesionService:SesionService) { }
+  constructor(private tokenService: TokenService, private router: Router, private authService: AuthService, private sesionService:SesionService) {
+    
+   }
+  
   ngOnInit(): void {
     const objeto = this;
     this.sesionService.currentMessage.subscribe({

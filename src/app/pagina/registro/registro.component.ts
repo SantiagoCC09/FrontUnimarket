@@ -23,11 +23,16 @@ export class RegistroComponent {
     this.authService.registrar(this.usuario).subscribe({
       next: data => {
         objeto.alerta = new Alerta(data.respuesta, "success");
+        console.log("Registrado");
+        
+        
       },
       error: error => {
         objeto.alerta = new Alerta(error.error.respuesta, "danger");
+        console.log("Error registro");
       }
     });
+    console.log(this.usuario.nombre);
   }
 
 

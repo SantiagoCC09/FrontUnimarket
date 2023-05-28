@@ -1,8 +1,12 @@
 export class UsuarioDTO {
+    cedula:number=0;
     nombre:string="";
     email:string="";
-    direccion:string="";
-    telefono:string="";
+    
+    
+    
     password:string="";
     confirmarPassword:string="";
+    direccion:string="";
+    telefono:string="";
 }
