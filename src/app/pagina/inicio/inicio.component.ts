@@ -13,7 +13,7 @@ export class InicioComponent implements OnInit {
   categorias: any[] = [
     { nombre: 'Tecnología', checked: false },
     { nombre: 'Hogar', checked: false },
-    { nombre: 'Deportes', checked: false },
+    { nombre: 'Deporte', checked: false },
     { nombre: 'Ropa', checked: false },
     { nombre: 'Calzado', checked: false },
   ];
@@ -38,9 +38,7 @@ export class InicioComponent implements OnInit {
   }
 
   agregarAlCarrito(producto: ProductoGetDTO) {
-    // Aquí puedes implementar la lógica para agregar el producto al carrito
-    // Por ejemplo, llamar a un servicio o actualizar el estado del carrito en tu aplicación
-    console.log('Producto agregado al carrito:', producto);
+    
   }
 
   private cargarCategorias() {
@@ -70,11 +68,14 @@ export class InicioComponent implements OnInit {
   }
 
   filtrarProductos() {
-    const categoriasSeleccionadas = this.categorias.filter(categoria => categoria.checked).map(categoria => categoria[0].nombre);
+    const categoriasSeleccionadas = this.categorias.filter(categoria => categoria.checked).map(categoria => categoria.nombre);
     if (categoriasSeleccionadas.length > 0) {
-      this.productos = this.productos.filter(producto => categoriasSeleccionadas.includes(producto.categorias));
+      this.productos = this.productoServicio.listarQuemados().filter(producto =>
+        producto.categorias.some(categoria => categoriasSeleccionadas.includes(categoria))
+      );
     } else {
       this.cargarProductos();
     }
   }
+  
 }

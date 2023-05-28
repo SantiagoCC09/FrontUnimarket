@@ -37,7 +37,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   public registrar(usuario: UsuarioDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/crear`, usuario);
+    return this.http.post<MensajeDTO>(`${this.authURL}/registro`, usuario);
   }
   public login(sesion: SesionDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/login`, sesion);

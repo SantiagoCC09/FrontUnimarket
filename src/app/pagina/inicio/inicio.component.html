@@ -1,4 +1,4 @@
-<div class="container">
+<div class="inicio-container">
   <div class="row">
     <div class="col-12">
       <h1 class="text-center">Bienvenido a nuestro Unimarket</h1>
@@ -23,20 +23,24 @@
         <div class="card-deck">
           <div class="card" *ngFor="let producto of productos">
             <img [src]="producto.imagenes[0]" class="card-img-top" alt="Imagen del producto">
-              <div class="card-body">
+            <div class="card-body">
+              <div class="margen">
                 <h5 class="card-title">{{ producto.nombre }}</h5>
                 <p class="card-text">{{ producto.descripcion }}</p>
                 <p class="card-text">Precio: {{ producto.precio }}</p>
-                <button class="btn btn-primary" (click)="agregarAlCarrito(producto)">Agregar al carrito</button>
+                <p class="card-text">
+                  Categorías:
+                  {{ producto.categorias }}
+                </p>
               </div>
+
+              <button class="btn btn-primary" (click)="agregarAlCarrito(producto)">
+                Agregar al carrito
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
-
-
-
-
