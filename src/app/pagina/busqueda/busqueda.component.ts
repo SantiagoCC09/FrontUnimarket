@@ -13,6 +13,7 @@ export class BusquedaComponent {
   textoBusqueda: string;
   constructor(private route: ActivatedRoute, private productoServicio: ProductoService) {
     this.textoBusqueda = "";
+    this.productos = this.productoServicio.listarQuemados();
     this.productoServicio.listar().subscribe(
       data => {
         this.productos = data.respuesta;

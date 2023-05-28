@@ -55,4 +55,26 @@ export class InicioComponent implements OnInit {
       }
     );
   }
+  cargarProductos() {
+    this.productos = this.productoServicio.listarQuemados();
+    this.productoServicio.listar().subscribe(
+      data => {
+        this.productos = data.respuesta;
+        console.log("Productos cargados correctamente");
+      },
+      error => {
+        console.log(error.error);
+        console.log("Error al cargar los productos");
+      }
+    );
+  }
+
+  filtrarProductos() {
+    const categoriasSeleccionadas = this.categorias.filter(categoria => categoria.checked).map(categoria => categoria[0].nombre);
+    if (categoriasSeleccionadas.length > 0) {
+      this.productos = this.productos.filter(producto => categoriasSeleccionadas.includes(producto.categorias));
+    } else {
+      this.cargarProductos();
+    }
+  }
 }

@@ -16,6 +16,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlertaComponent } from './pagina/alerta/alerta.component';
 import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-productos.component';
+import { FavoritoComponent } from './pagina/favorito/favorito.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-pr
     PerfilComponent,
     DetalleProductoComponent,
     AlertaComponent,
-    RevisarProductosComponent
+    RevisarProductosComponent,
+    FavoritoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,16 @@
 <div class="card p-5">
   <form #f="ngForm" >
     <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Cedula: </label>
+      <div class="col-sm-10">
+        <input #cedula="ngModel" class="form-control" [ngClass]="
+            cedula.invalid && (cedula.dirty || cedula.touched)
+              ? 'is-invalid'
+              : ''
+          " type="text" name="cedula" [(ngModel)]="usuario.cedula" required maxlength="50" />
+      </div>
+    </div>
+    <div class="mb-3 row">
       <label class="col-sm-2 col-form-label">Nombre: </label>
       <div class="col-sm-10">
         <input #nombre="ngModel" class="form-control" [ngClass]="
@@ -47,7 +57,7 @@
             !sonIguales()
               ? 'is-invalid'
               : ''
-          " type="password" name="password" [(ngModel)]="usuario.password" required />
+          " type="password" name="password" [(ngModel)]="usuario.contrasenia" required />
       </div>
     </div>
     <div class="mb-3 row">

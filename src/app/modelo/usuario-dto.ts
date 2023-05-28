@@ -5,8 +5,9 @@ export class UsuarioDTO {
     
     
     
-    password:string="";
-    confirmarPassword:string="";
+    contrasenia:string="";
     direccion:string="";
     telefono:string="";
+    confirmarPassword:string="";
+    
 }

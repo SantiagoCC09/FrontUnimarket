@@ -1,0 +1,23 @@
+.card-deck{
+    display:flex;
+    padding: 2%;
+}
+
+.card{
+    padding:2%;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+
+.btn btn-primary{
+    margin-bottom: 1%;
+}
+
+.all-products{
+    display:flex;
+}
+.row1{
+    padding: 2%;
+    width: 40%;
+    height: 100%;
+}
