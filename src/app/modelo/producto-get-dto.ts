@@ -6,15 +6,18 @@ export class ProductoGetDTO {
     unidades: number=0;
     imagenes: string[]=[];
     categorias: string[]=[];
+    codigoUsuario:number;
   
     constructor(
+      
       codigo: number,
       nombre: string,
       descripcion: string,
       precio: number,
       unidades: number,
       imagenes: string[],
-      categorias: string[]
+      categorias: string[],
+      codigoUsuario:number
     ) {
       this.codigo = codigo;
       this.nombre = nombre;
@@ -23,6 +26,7 @@ export class ProductoGetDTO {
       this.unidades = unidades;
       this.imagenes = imagenes;
       this.categorias = categorias;
+      this.codigoUsuario = codigoUsuario;
     }
   }
   

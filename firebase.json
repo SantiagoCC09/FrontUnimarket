@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/front-unimarket",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",

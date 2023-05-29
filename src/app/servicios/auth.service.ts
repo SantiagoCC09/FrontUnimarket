@@ -33,6 +33,7 @@ import { SesionDTO } from '../modelo/sesion-dto';
   providedIn: 'root'
 })
 export class AuthService {
+  //api
   private authURL = "https://proyectofinal-production-e500.up.railway.app/api/auth";
   constructor(private http: HttpClient) { }
 

@@ -20,6 +20,7 @@ import { FavoritoComponent } from './pagina/favorito/favorito.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { FavoritoComponent } from './pagina/favorito/favorito.component';
     FormsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: UsuarioInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

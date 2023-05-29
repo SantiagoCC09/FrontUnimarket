@@ -5,7 +5,6 @@ import { ProductoGetDTO } from 'src/app/modelo/producto-get-dto';
 import { ProductoDTO } from 'src/app/modelo/producto-dto';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { ImagenService } from 'src/app/servicios/imagen.service';
-
 @Component({
   selector: 'app-crear-producto',
   templateUrl: './crear-producto.component.html',
@@ -17,7 +16,13 @@ export class CrearProductoComponent implements OnInit {
   codigoProducto = 0;
 
   categoriasSeleccionadas: string[] = [];
-  categorias: any[] = [];
+  categorias: any[] = [
+    { nombre: 'TECNOLOGIA', checked: false },
+    { nombre: 'HOGAR', checked: false },
+    { nombre: 'DEPORTES', checked: false },
+    { nombre: 'ROPA', checked: false },
+    { nombre: 'CALZADO', checked: false },
+  ];
 
   archivos!: FileList;
 
@@ -26,18 +31,12 @@ export class CrearProductoComponent implements OnInit {
     private categoriaService: CategoriaService,
     private productoService: ProductoService,
     private imagenService: ImagenService,
-    private route: ActivatedRoute,
-
+    private route: ActivatedRoute
   ) {
-    this.cargarCategorias();
-    this.producto = new ProductoGetDTO(0, '', '', 0, 0, [], []);
-    this.categoriaService.listar();
+    this.producto = new ProductoGetDTO(0, '', '', 0, 0, [], [], 0);
   }
-
   ngOnInit() {
-    this.cargarCategorias();
     this.route.params.subscribe((params) => {
-      
       this.codigoProducto = params["codigo"];
       this.productoService.obtener(this.codigoProducto).subscribe((objetoProducto) => {
         if (objetoProducto != null) {
@@ -55,20 +54,8 @@ export class CrearProductoComponent implements OnInit {
       this.archivos = event.target.files;
     }
   }
-
   crearProducto() {
-    this.producto.codigo = 9;
-    this.productoService.crearProducto(this.producto).subscribe(
-      (data) => {
-        console.log(data.respuesta);
-      },
-      (error) => {
-        console.log(error.error);
-      }
-    );
-    /*
     if (this.producto.imagenes.length > 0) {
-      this.producto.codigo = 9;
       this.productoService.crearProducto(this.producto).subscribe(
         (data) => {
           console.log(data.respuesta);
@@ -80,9 +67,7 @@ export class CrearProductoComponent implements OnInit {
     } else {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
-    */
   }
-
   onCategoriaChange(categoria: any) {
     if (categoria.checked) {
       this.categoriasSeleccionadas.push(categoria.nombre);
@@ -96,8 +81,7 @@ export class CrearProductoComponent implements OnInit {
       categoria.checked = this.producto.categorias.includes(categoria.nombre);
     });
   }
-
-  cargarCategorias(): void {
+  cargarCategorias() {
     this.categoriaService.listar().subscribe(
       (data) => {
         this.categorias = data.respuesta;
@@ -107,37 +91,20 @@ export class CrearProductoComponent implements OnInit {
       }
     );
   }
-
-  public subirImagenes() {
-    const objeto = this.producto;
-    const formData = new FormData();
-    formData.append('file', this.archivos[0]);
-    this.imagenService.subir(formData).subscribe({
-      next: data => {
-        objeto.imagenes.push(data.respuesta.url);
-      },
-      error: error => {
-        console.log(error.error);
-      }
-    });
-    /*
+  subirImagenes() {
     if (this.archivos != null && this.archivos.length > 0) {
-      const objeto = this.producto;
       const formData = new FormData();
       formData.append('file', this.archivos[0]);
-      this.imagenService.subir(formData).subscribe({
-        next: data => {
-          objeto.imagenes.push(data.respuesta.url);
+      this.imagenService.subir(formData).subscribe(
+        (data) => {
+          this.producto.imagenes.push(data.respuesta.url);
         },
-        error: error => {
+        (error) => {
           console.log(error.error);
         }
-      });
+      );
     } else {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
-    */
   }
-
-
 }

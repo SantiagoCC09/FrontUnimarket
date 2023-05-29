@@ -24,6 +24,18 @@
         <input type="number" name="unidades" [(ngModel)]="producto.unidades" class="form-control" required />
       </div>
     </div>
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Código: </label>
+      <div class="col-sm-10">
+        <input type="number" name="codigo" [(ngModel)]="producto.codigo" class="form-control" required />
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label class="col-sm-2 col-form-label">Código usuario: </label>
+      <div class="col-sm-10">
+        <input type="number" name="codigoVendedor" [(ngModel)]="producto.codigoUsuario" class="form-control" required />
+      </div>
+    </div>
     <div *ngFor="let categoria of categorias">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" name="categorias" [(ngModel)]="categoria.checked" id="categoria_{{categoria.id}}" />

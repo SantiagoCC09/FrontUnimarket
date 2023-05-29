@@ -15,6 +15,7 @@ import { UsuarioInterceptor } from './interceptor/usuario.interceptor';
 import { RevisarProductosComponent } from './pagina/revisar-productos/revisar-productos.component';
 import { FavoritoService } from './servicios/favorito.service';
 import { FavoritoComponent } from './pagina/favorito/favorito.component';
+import { DetalleProductoComponent } from './pagina/detalle-producto/detalle-producto.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: "perfil", component: PerfilComponent },
   {path: "favorito", component: FavoritoComponent},
   { path: "editar-producto/:codigo", component: CrearProductoComponent },
-
+  {path: "detalle0-producto", component: DetalleProductoComponent},
   {
     path: "crear-producto", component: CrearProductoComponent, canActivate: [RolesGuard], data: {
       expectedRole: ["CLIENTE"]

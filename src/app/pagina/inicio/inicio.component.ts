@@ -1,45 +1,31 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductoGetDTO } from 'src/app/modelo/producto-get-dto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
-import { CarritoService } from 'src/app/servicios/carrito.service';
-import { DetalleProductoComponent } from '../detalle-producto/detalle-producto.component';
-
-
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
-
-
 })
-
-
 export class InicioComponent implements OnInit {
   productos: ProductoGetDTO[];
 
-  /*
-
-  categorias = [
-    { nombre: 'Tecnología', checked: false },
-    { nombre: 'Hogar', checked: false },
-    { nombre: 'Deporte', checked: false },
-    { nombre: 'Ropa', checked: false },
-    { nombre: 'Calzado', checked: false },
+  categorias: any[] = [
+    { nombre: 'TECNOLOGIA', checked: false },
+    { nombre: 'HOGAR', checked: false },
+    { nombre: 'DEPORTE', checked: false },
+    { nombre: 'ROPA', checked: false },
+    { nombre: 'CALZADO', checked: false },
   ];
-  */
 
-  categorias: any[] = [];
+ //categorias=[];
 
-  constructor(private productoServicio: ProductoService, private categoriaServicio: CategoriaService, private detalleServicio: DetalleProductoComponent, private carritoServicio: CarritoService) {
-    categoriaServicio.listar();
+  constructor(private productoServicio: ProductoService, private categoriaServicio:CategoriaService) {
     this.productos = [];
     this.cargarCategorias();
   }
-
   ngOnInit(): void {
     this.productos = this.productoServicio.listarQuemados();
-    this.cargarCategorias();
     this.productoServicio.listar().subscribe(
       data => {
         this.productos = data.respuesta;
@@ -47,15 +33,13 @@ export class InicioComponent implements OnInit {
       },
       error => {
         console.log(error.error);
-        console.log("Error, estan quemados");
+        console.log("Error");
       }
     );
   }
-
   agregarAlCarrito(producto: ProductoGetDTO) {
-    this.detalleServicio.agregarCarrito();
+    
   }
-
   private cargarCategorias() {
     this.categoriaServicio.listar().subscribe(
       (data) => {
@@ -64,7 +48,7 @@ export class InicioComponent implements OnInit {
       },
       (error) => {
         console.log(error.error);
-        console.log("Error categorias cargadas inicio");
+        console.log("");
       }
     );
   }
@@ -81,7 +65,6 @@ export class InicioComponent implements OnInit {
       }
     );
   }
-
   filtrarProductos() {
     const categoriasSeleccionadas = this.categorias.filter(categoria => categoria.checked).map(categoria => categoria.nombre);
     if (categoriasSeleccionadas.length > 0) {
@@ -92,5 +75,5 @@ export class InicioComponent implements OnInit {
       this.cargarProductos();
     }
   }
-
+  
 }
