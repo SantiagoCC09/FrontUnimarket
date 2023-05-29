@@ -1,5 +1,5 @@
 export class ProductoDTO {
-    codigo:number=0;
+    codigo:number=5;
     nombre:string="";
     descripcion:string="";
     precio:number=0;
