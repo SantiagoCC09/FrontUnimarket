@@ -21,17 +21,23 @@ export class CrearProductoComponent implements OnInit {
 
   archivos!: FileList;
 
+
   constructor(
     private categoriaService: CategoriaService,
     private productoService: ProductoService,
     private imagenService: ImagenService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
+    this.cargarCategorias();
     this.producto = new ProductoGetDTO(0, '', '', 0, 0, [], []);
+    this.categoriaService.listar();
   }
 
   ngOnInit() {
+    this.cargarCategorias();
     this.route.params.subscribe((params) => {
+      
       this.codigoProducto = params["codigo"];
       this.productoService.obtener(this.codigoProducto).subscribe((objetoProducto) => {
         if (objetoProducto != null) {
@@ -51,7 +57,18 @@ export class CrearProductoComponent implements OnInit {
   }
 
   crearProducto() {
+    this.producto.codigo = 9;
+    this.productoService.crearProducto(this.producto).subscribe(
+      (data) => {
+        console.log(data.respuesta);
+      },
+      (error) => {
+        console.log(error.error);
+      }
+    );
+    /*
     if (this.producto.imagenes.length > 0) {
+      this.producto.codigo = 9;
       this.productoService.crearProducto(this.producto).subscribe(
         (data) => {
           console.log(data.respuesta);
@@ -63,6 +80,7 @@ export class CrearProductoComponent implements OnInit {
     } else {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
+    */
   }
 
   onCategoriaChange(categoria: any) {
@@ -79,7 +97,7 @@ export class CrearProductoComponent implements OnInit {
     });
   }
 
-  cargarCategorias() {
+  cargarCategorias(): void {
     this.categoriaService.listar().subscribe(
       (data) => {
         this.categorias = data.respuesta;
@@ -90,20 +108,36 @@ export class CrearProductoComponent implements OnInit {
     );
   }
 
-  subirImagenes() {
+  public subirImagenes() {
+    const objeto = this.producto;
+    const formData = new FormData();
+    formData.append('file', this.archivos[0]);
+    this.imagenService.subir(formData).subscribe({
+      next: data => {
+        objeto.imagenes.push(data.respuesta.url);
+      },
+      error: error => {
+        console.log(error.error);
+      }
+    });
+    /*
     if (this.archivos != null && this.archivos.length > 0) {
+      const objeto = this.producto;
       const formData = new FormData();
       formData.append('file', this.archivos[0]);
-      this.imagenService.subir(formData).subscribe(
-        (data) => {
-          this.producto.imagenes.push(data.respuesta.url);
+      this.imagenService.subir(formData).subscribe({
+        next: data => {
+          objeto.imagenes.push(data.respuesta.url);
         },
-        (error) => {
+        error: error => {
           console.log(error.error);
         }
-      );
+      });
     } else {
       console.log('Debe seleccionar al menos una imagen y subirla');
     }
+    */
   }
+
+
 }

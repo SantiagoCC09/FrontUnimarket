@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoriaService {
-  private catURL = "http://localhost:8081/api/categorias";
+  private catURL = "https://proyectofinal-production-e500.up.railway.app/api/categorias";
   constructor(private http: HttpClient) { }
   public listar(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.catURL}/listar`);

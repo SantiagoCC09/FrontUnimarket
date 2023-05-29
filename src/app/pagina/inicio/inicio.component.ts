@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ProductoGetDTO } from 'src/app/modelo/producto-get-dto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
@@ -17,32 +17,29 @@ import { DetalleProductoComponent } from '../detalle-producto/detalle-producto.c
 
 export class InicioComponent implements OnInit {
   productos: ProductoGetDTO[];
-  @NgModule({
-    declarations: [
-      // Otros componentes declarados en este módulo
-      DetalleProductoComponent,
-    ],
-    // Otros metadatos del módulo
-  })
 
+  /*
 
-  categorias: any[] = [
+  categorias = [
     { nombre: 'Tecnología', checked: false },
     { nombre: 'Hogar', checked: false },
     { nombre: 'Deporte', checked: false },
     { nombre: 'Ropa', checked: false },
     { nombre: 'Calzado', checked: false },
   ];
+  */
 
-  //categorias=[];
+  categorias: any[] = [];
 
   constructor(private productoServicio: ProductoService, private categoriaServicio: CategoriaService, private detalleServicio: DetalleProductoComponent, private carritoServicio: CarritoService) {
+    categoriaServicio.listar();
     this.productos = [];
     this.cargarCategorias();
   }
 
   ngOnInit(): void {
-    //this.productos = this.productoServicio.listarQuemados();
+    this.productos = this.productoServicio.listarQuemados();
+    this.cargarCategorias();
     this.productoServicio.listar().subscribe(
       data => {
         this.productos = data.respuesta;

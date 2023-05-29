@@ -1,12 +1,12 @@
 <header class="p-3 text-bg-dark">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a routerLink="" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+      <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <i class="fa-solid fa-bag-shopping fs-3"></i>
         <span class="fs-4 ms-3 me-3">{{title}}</span>
       </a>
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a routerLink="" *ngIf="isLogged" class="nav-link px-2 text-secondary">Inicio</a></li>
+        <li><a routerLink="/"  class="nav-link px-2 text-secondary">Inicio</a></li>
         <li><a routerLink="/gestion" *ngIf="isLogged" class="nav-link px-2 text-white">Mis productos</a></li>
         <li><a routerLink="" *ngIf="isLogged" class="nav-link px-2 text-white">Mis compras</a></li>
         <li><a routerLink="/carrito" *ngIf="isLogged" class="nav-link px-2 text-white">Carrito</a></li>

@@ -4,17 +4,21 @@ import { MensajeDTO } from '../modelo/mensaje-dto';
 import { Observable } from 'rxjs';
 import { ProductoDTO } from '../modelo/producto-dto';
 import { ProductoGetDTO } from '../modelo/producto-get-dto';
+import { SesionService } from './sesion.service';
+import { SesionDTO } from '../modelo/sesion-dto';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
-  private productoURL = "http://localhost:8081/api/productos";
+  private productoURL = "https://proyectofinal-production-e500.up.railway.app/api/productos";
   productos: ProductoGetDTO[];
   productoSeleccionado: ProductoGetDTO;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private usuarioService:UsuarioService) {
     this.productos = [];
+    
     this.productoSeleccionado = new ProductoGetDTO(0, '', '', 0, 0, [], []);
     this.productos.push(new ProductoGetDTO(1, "Televisor LG 4K", "Televisor LG 2023 UHD", 3500000, 2,
       ["https://www.lg.com/co/images/televisores/md07527619/gallery/dm-1.jpg"], ["Tecnología"]));
@@ -40,8 +44,7 @@ export class ProductoService {
   
 
   public crearProducto(producto: ProductoGetDTO): Observable<MensajeDTO> {
-    const usuarioCodigo = 1; // Código del usuario que realiza la creación del producto
-    producto.codigo = usuarioCodigo;
+    producto.codigo=6;
     return this.http.post<MensajeDTO>(`${this.productoURL}/crear`, producto);
   }
 
