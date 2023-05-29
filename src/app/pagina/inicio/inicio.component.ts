@@ -1,16 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule} from '@angular/core';
 import { ProductoGetDTO } from 'src/app/modelo/producto-get-dto';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
+import { CarritoService } from 'src/app/servicios/carrito.service';
+import { DetalleProductoComponent } from '../detalle-producto/detalle-producto.component';
+
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
+
+
 })
+
+
 export class InicioComponent implements OnInit {
   productos: ProductoGetDTO[];
-  
+  @NgModule({
+    declarations: [
+      // Otros componentes declarados en este módulo
+      DetalleProductoComponent,
+    ],
+    // Otros metadatos del módulo
+  })
+
+
   categorias: any[] = [
     { nombre: 'Tecnología', checked: false },
     { nombre: 'Hogar', checked: false },
@@ -18,16 +33,16 @@ export class InicioComponent implements OnInit {
     { nombre: 'Ropa', checked: false },
     { nombre: 'Calzado', checked: false },
   ];
-  
- //categorias=[];
 
-  constructor(private productoServicio: ProductoService, private categoriaServicio:CategoriaService) {
+  //categorias=[];
+
+  constructor(private productoServicio: ProductoService, private categoriaServicio: CategoriaService, private detalleServicio: DetalleProductoComponent, private carritoServicio: CarritoService) {
     this.productos = [];
     this.cargarCategorias();
   }
 
   ngOnInit(): void {
-    this.productos = this.productoServicio.listarQuemados();
+    //this.productos = this.productoServicio.listarQuemados();
     this.productoServicio.listar().subscribe(
       data => {
         this.productos = data.respuesta;
@@ -41,7 +56,7 @@ export class InicioComponent implements OnInit {
   }
 
   agregarAlCarrito(producto: ProductoGetDTO) {
-    
+    this.detalleServicio.agregarCarrito();
   }
 
   private cargarCategorias() {
@@ -80,5 +95,5 @@ export class InicioComponent implements OnInit {
       this.cargarProductos();
     }
   }
-  
+
 }
